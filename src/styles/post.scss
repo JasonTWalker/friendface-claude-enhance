@@ -1,50 +1,54 @@
-@import "./colour-palettes/default-palette.scss";
-
 .post {
-  // Theme-aware design tokens
-  --post-surface: var(--color-surface, #ffffff);
-  --post-text: var(--color-text, #1e293b);
-  --post-muted: var(--color-muted, #3272cc);
-  --post-border: var(--color-border, #e2e8f0);
-  --post-accent: var(--color-accent, #2563eb);
-
+  position: relative;
   width: 100%;
-  box-sizing: border-box;
-  padding: 1.25rem;
   margin-block: 1rem;
-
-  color: var(--post-text);
-  background: var(--post-surface);
-  background-color: var(--post-surface);
-  border: 1px solid var(--post-border);
+  padding: 1.3rem 1.4rem 1.1rem;
+  overflow: hidden;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 1rem;
-
-  // A subtle shadow adds depth without making the card heavy.
-  box-shadow: 0 2px 8px rgb(15 23 42 / 4%);
-
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow);
   transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease;
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+
+  // gradient accent line across the top of every card
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+    opacity: 0.75;
+  }
 
   &:hover {
-    box-shadow: 0 5px 18px rgb(15 23 42 / 7%);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow), var(--glow);
+    transform: translateY(-2px);
   }
 
   &__header {
     display: flex;
     align-items: center;
-    gap: 0.875rem;
+    gap: 0.9rem;
     min-width: 0;
   }
 
+  // avatar in a conic "orbit" ring
   &__avatar {
     display: block;
-    flex: 0 0 auto;
-    width: 2.875rem;
-    height: 2.875rem;
-    border-radius: 50%;
+    flex: none;
+    width: 3rem;
+    height: 3rem;
+    padding: 2px;
     object-fit: cover;
-    background: var(--post-border);
+    border-radius: 50%;
+    background: conic-gradient(from 140deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent));
+    box-shadow: 0 0 14px rgb(0 229 255 / 25%);
   }
 
   &__author-info {
@@ -54,24 +58,29 @@
 
   &__author {
     margin: 0;
-    font-size: 0.9375rem;
-    font-weight: 650;
-    line-height: 1.4;
+    font: 700 0.95rem var(--font-ui);
     overflow-wrap: anywhere;
+
+    &::before {
+      content: "@";
+      color: var(--accent);
+    }
   }
 
   &__date {
     display: block;
-    margin-top: 0.2rem;
-    color: var(--post-muted);
-    font-size: 0.8125rem;
-    line-height: 1.4;
+    margin-top: 0.15rem;
+    color: var(--muted);
+    font: 0.72rem var(--font-ui);
   }
 
+  // content reads like a quoted block of output
   &__content {
-    margin-block: 1.25rem;
-    font-size: 0.9375rem;
-    line-height: 1.75;
+    margin: 1.15rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--border-strong);
+    font-size: 0.95rem;
+    line-height: 1.7;
     overflow-wrap: anywhere;
     white-space: pre-wrap;
   }
@@ -81,76 +90,44 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding-top: 0.875rem;
-    border-top: 1px solid var(--post-border);
-    color: var(--post-muted);
-    font-size: 0.8125rem;
+    padding-top: 0.8rem;
+    color: var(--muted);
+    border-top: 1px dashed var(--border);
+    font: 0.74rem var(--font-ui);
+  }
+
+  &__likes {
+    color: var(--good);
+    font-weight: 700;
+
+    &::before {
+      content: "▲ ";
+    }
+  }
+
+  &__id {
+    max-width: 16ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.625rem;
-    margin-top: 1rem;
-  }
+    gap: 0.6rem;
+    margin-top: 0.9rem;
 
-  &__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 2.5rem;
-    padding: 0.625rem 1rem;
-
-    border: 1px solid transparent;
-    border-radius: 0.625rem;
-    font: inherit;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-
-    transition:
-      background-color 150ms ease,
-      border-color 150ms ease,
-      color 150ms ease,
-      transform 150ms ease;
-
-    &:focus-visible {
-      outline: 3px solid var(--post-accent);
-      outline-offset: 3px;
-    }
-
-    &:active {
-      transform: translateY(1px);
+    &:empty {
+      display: none;
     }
   }
 
-  &__button--like {
-    color: var(--post-border);
-    background: var(--post-accent);
-
-    &:hover {
-      filter: brightness(0.92);
-    }
-  }
-
-  &__button--delete {
-    color: var(--post-muted);
-    background: transparent;
-    border-color: var(--post-muted);
-
-    &:hover {
-      color: #b91c1c;
-      border-color: #fca5a5;
-      background: #fef2f2;
-    }
-  }
-
-  // Respect the user's reduced-motion preference.
   @media (prefers-reduced-motion: reduce) {
     transition: none;
 
-    &__button {
-      transition: none;
+    &:hover {
+      transform: none;
     }
   }
 }

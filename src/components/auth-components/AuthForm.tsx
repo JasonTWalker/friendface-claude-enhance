@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../../styles/auth.scss";
 import { useNavigate } from "react-router";
 import { useAppDispatch } from "../../app/hooks";
 import { setCredentials } from "../../features/authSlice";

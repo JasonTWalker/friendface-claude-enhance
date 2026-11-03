@@ -1,0 +1,98 @@
+@use "sass:list";
+@use "sass:math";
+
+// Procedural starfield. Each star is one box-shadow of a 1px element, positioned in vw/vh so the fixed
+// layer covers any viewport. Positions are random at build time, so every build has a fresh sky.
+$star-colours: #ffffff, #cfe8ff, #9fe9ff, #d8c8ff, #ffd9f4;
+
+@function stars($count) {
+  $shadows: ();
+  @for $i from 1 through $count {
+    $x: math.div(math.random(1000), 10) * 1vw;
+    $y: math.div(math.random(1000), 10) * 1vh;
+    $spread: if(math.random(9) > 8, 1px, 0);
+    $colour: list.nth($star-colours, math.random(list.length($star-colours)));
+    $shadows: list.append($shadows, $x $y 0 $spread $colour, comma);
+  }
+  @return $shadows;
+}
+
+// nebula glow
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: var(--nebula);
+}
+
+// stars
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: var(--stars-opacity);
+  box-shadow: stars(260);
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+
+// an occasional shooting star, mostly idle between passes
+#root::before {
+  content: "";
+  position: fixed;
+  top: 12vh;
+  left: 78vw;
+  z-index: -1;
+  width: 9rem;
+  height: 1px;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, var(--accent));
+  transform: rotate(35deg);
+  animation: shoot 14s ease-in 3s infinite;
+}
+
+body[data-theme="light"] #root::before {
+  display: none;
+}
+
+@keyframes twinkle {
+  from {
+    filter: brightness(0.65);
+  }
+
+  to {
+    filter: brightness(1.25);
+  }
+}
+
+@keyframes shoot {
+  0%,
+  86% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(35deg);
+  }
+
+  88% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-45vw, 32vw) rotate(35deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after,
+  #root::before {
+    animation: none;
+  }
+}

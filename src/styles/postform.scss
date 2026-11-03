@@ -1,11 +1,66 @@
-@import "./colour-palettes/default-palette.scss";
-
-
+// "new post" composer, dressed as a terminal window
 .post-form-container {
-  background-color: $blue-slate;
-  padding-top: 12px;
-  padding-bottom: 6px;
-  padding-left: 20px;
-  padding-right: 20px;
-  word-wrap: break-word;
+  position: relative;
+  width: calc(min(100%, var(--content-width)) - 2.5rem);
+  margin: 1.5rem auto 0;
+  padding: 2.6rem 1.4rem 1.3rem;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow), var(--glow);
+
+  // window traffic lights
+  &::before {
+    content: "";
+    position: absolute;
+    top: 1rem;
+    left: 1.2rem;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: var(--bad);
+    box-shadow:
+      1.1rem 0 var(--warn),
+      2.2rem 0 var(--good);
+  }
+
+  &::after {
+    content: "new_post.sh";
+    position: absolute;
+    top: 0.8rem;
+    right: 1.2rem;
+    color: var(--muted);
+    font: 0.72rem var(--font-ui);
+  }
+}
+
+.post-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+
+  br {
+    display: none;
+  }
+
+  p {
+    flex-basis: 100%;
+    margin: 0;
+    color: var(--muted);
+    font: 0.8rem var(--font-ui);
+
+    &::before {
+      content: "$ whoami → ";
+      color: var(--good);
+    }
+  }
+
+  label {
+    flex-basis: 100%;
+  }
+
+  input {
+    flex: 1 1 100%;
+  }
 }

@@ -1,32 +1,58 @@
-a.active {
-  color: #3d06d3;
-}
-a.pending {
-  color: #5C677D;
-}
-a.transitioning {
-  view-transition-name: my-transition;
-}
+nav {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.4rem;
 
-nav a {
-  padding-top: 4px;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-bottom: 4px;
-  background-color: #5c677d98;
-  width: 80px;
-  max-width: 80px;
-  display: inline-block;
-  text-align: center;
-  margin-right: 12px;
-}
+  a {
+    padding: 0.4rem 0.9rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 0.55rem;
+    font: 500 0.8rem var(--font-ui);
+    transition:
+      color 150ms ease,
+      background-color 150ms ease,
+      border-color 150ms ease,
+      box-shadow 150ms ease;
 
-a {
-  color: #001233;
-  text-decoration: none;
-  font-size: larger;
-}
+    &:hover {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: var(--border-strong);
+    }
 
-nav a:hover {
-  background-color: rgba(0, 18, 51, 0.308);
+    // current route: lit up like a running process
+    &.active {
+      color: var(--accent-ink);
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: var(--glow);
+    }
+
+    &.pending {
+      opacity: 0.6;
+    }
+
+    &.transitioning {
+      view-transition-name: my-transition;
+    }
+  }
+
+  // who is logged in, pushed to the right with the log out button
+  .nav__user {
+    margin-left: auto;
+    color: var(--muted);
+    font: 0.8rem var(--font-ui);
+
+    &::before {
+      content: "●";
+      margin-right: 0.45rem;
+      color: var(--good);
+      text-shadow: 0 0 8px var(--good);
+    }
+  }
 }

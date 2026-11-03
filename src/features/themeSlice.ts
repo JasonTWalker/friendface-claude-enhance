@@ -5,7 +5,7 @@ export interface ThemeState {
 }
 
 const initialState: ThemeState = {
-    value: "light",
+    value: "dark",
 }
 export const themeSlice = createSlice({
     name: 'theme',

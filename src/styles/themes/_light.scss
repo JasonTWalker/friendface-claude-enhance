@@ -1,11 +1,35 @@
-@import "../colour-palettes/default-palette.scss";
+@use "../colour-palettes/default-palette" as p;
 
-[data-theme="light"] {
-    --color-surface: #{$porcelain};
-    --color-text: #{$ink-black};
-    --color-muted: #{$twilight-indigo};
-    --color-border: #{$twilight-indigo};
-    --color-accent: #{$smart-blue};
-    --color-button-text: #{$ink-black};
-    --color-header-background: #{$cool-steel};
+// Light ("lunar day"): same tokens as the dark theme, pale surfaces and no starfield.
+body[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #{p.$moon-dust};
+  --surface: rgb(255 255 255 / 78%);
+  --surface-solid: #{p.$moon-white};
+  --surface-2: #e3e8f8;
+  --input-bg: rgb(255 255 255 / 85%);
+
+  --text: #{p.$deep-ink};
+  --muted: #{p.$dusk};
+  --border: rgb(40 60 140 / 18%);
+  --border-strong: rgb(10 108 255 / 50%);
+
+  --accent: #{p.$sky-blue};
+  --accent-ink: #ffffff;
+  --accent-soft: rgb(10 108 255 / 10%);
+  --accent-2: #{p.$eclipse-violet};
+  --accent-3: #c026d3;
+
+  --good: #12924a;
+  --warn: #c2680a;
+  --bad: #d61f45;
+  --bad-soft: rgb(214 31 69 / 9%);
+
+  --glow: 0 0 18px rgb(10 108 255 / 22%);
+  --shadow: 0 12px 28px -16px rgb(30 40 100 / 35%);
+  --stars-opacity: 0;
+  --nebula:
+    radial-gradient(52rem 34rem at 10% -10%, rgb(124 58 237 / 12%), transparent 60%),
+    radial-gradient(44rem 30rem at 96% 4%, rgb(10 108 255 / 12%), transparent 62%);
 }
