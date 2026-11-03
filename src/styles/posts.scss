@@ -1,24 +1,89 @@
-@import "./colour-palettes/default-palette.scss";
-
-
-
 .posts_container {
-  background: $blue-slate;
-  padding: 20px;
-  padding-top: 6px;
-  word-wrap: break-word;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+  overflow-wrap: break-word;
 }
 
+// toolbar: theme switch + post actions
 .button-bar {
-  background: $regal-navy;
-  margin-bottom: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 0.7rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow);
 
-  button {
-    margin-right:15px;
+  // hint shown to logged out visitors
+  > span {
+    color: var(--muted);
+    font: 0.8rem var(--font-ui);
+
+    &::before {
+      content: "> ";
+      color: var(--accent);
+    }
+  }
+
+  // MUI switch, recoloured to the theme tokens
+  .MuiFormControlLabel-root {
+    margin: 0 auto 0 0;
+    color: var(--muted);
+  }
+
+  .MuiFormControlLabel-label {
+    font: 0.8rem var(--font-ui);
+  }
+
+  .MuiSwitch-track {
+    background: var(--border-strong);
+    opacity: 0.5;
+  }
+
+  .MuiSwitch-thumb {
+    color: var(--muted);
+  }
+
+  .MuiSwitch-switchBase.Mui-checked {
+    .MuiSwitch-thumb {
+      color: var(--accent);
+      box-shadow: var(--glow);
+    }
+
+    + .MuiSwitch-track {
+      background: var(--accent);
+      opacity: 0.45;
+    }
   }
 }
 
-.add-post-button {
-  color: $cool-steel;
-  background-color: $smart-blue;
+// loading / error / empty states
+.posts__status {
+  margin: 2rem 0;
+  padding: 1rem 1.25rem;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  border-radius: 0.8rem;
+  font: 0.85rem var(--font-ui);
+
+  &::before {
+    content: "$ ";
+    color: var(--good);
+  }
+
+  &--error {
+    color: var(--bad);
+    background: var(--bad-soft);
+    border-color: color-mix(in srgb, var(--bad) 40%, transparent);
+
+    &::before {
+      content: "! ";
+      color: var(--bad);
+    }
+  }
 }

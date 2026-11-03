@@ -1,0 +1,47 @@
+// shared login / register card
+.auth-form {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 26rem;
+  margin: 3rem auto;
+  padding: 2rem 1.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow), var(--glow);
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.4rem;
+
+    &::before {
+      content: "$ ";
+      color: var(--good);
+    }
+  }
+
+  label {
+    margin-top: 0.4rem;
+
+    &::before {
+      content: "> ";
+      color: var(--accent);
+    }
+  }
+
+  [role="alert"] {
+    margin: 0.4rem 0 0;
+    padding: 0.6rem 0.8rem;
+    color: var(--bad);
+    background: var(--bad-soft);
+    border-left: 3px solid var(--bad);
+    border-radius: 0.4rem;
+    font: 0.8rem var(--font-ui);
+  }
+
+  button[type="submit"] {
+    margin-top: 0.8rem;
+    min-height: 2.6rem;
+  }
+}

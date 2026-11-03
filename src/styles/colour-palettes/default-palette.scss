@@ -1,19 +1,30 @@
-// Default colour palette: https://coolors.co/palette/0466c8-0353a4-023e7d-002855-001845-001233-33415c-5c677d-7d8597-979dac
-$smart-blue: #0466c8;
-$steel-azure: #0353a4;
-$regal-navy: #023e7d;
-$prussian-blue: #002855;
-$prussian-blue-lighter: #001845;
-$prussian-blue-lightest: #001233;
-$twilight-indigo: #33415c;
-$blue-slate: #5c677d;
-$slate-grey: #7d8597;
-$cool-steel: #979dac;
+// Space-terminal palette. Colours are consumed through the CSS custom properties in ../themes/,
+// these Sass variables are only the single source of truth for them.
 
+// Deep space (dark theme surfaces)
+$void: #05060f;
+$void-raised: #0a0d1f;
+$hull: #0c1024;
+$hull-raised: #131a38;
 
-// Contrast colour palette: https://coolors.co/palette/011627-fdfffc-2ec4b6-e71d36-ff9f1c
-$ink-black: #011627;
-$porcelain: #fdfffc;
-$light-sea-green: #2ec4b6;
-$strawberry-red: #e71d36;
-$amber-glow: #ff9f1c;
+// Neon accents
+$ion-cyan: #00e5ff;
+$nebula-violet: #a78bfa;
+$pulsar-magenta: #ff4fd8;
+
+// LeetCode-style status colours
+$accepted-green: #2cbb5d;
+$medium-orange: #ffa116;
+$wrong-red: #ff375f;
+
+// Text on the dark theme
+$starlight: #dbe4ff;
+$dust: #8591bd;
+
+// Lunar day (light theme)
+$moon-dust: #eef1fb;
+$moon-white: #ffffff;
+$deep-ink: #12163a;
+$dusk: #565f8c;
+$sky-blue: #0a6cff;
+$eclipse-violet: #7c3aed;

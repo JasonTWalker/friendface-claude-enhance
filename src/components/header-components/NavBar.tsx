@@ -14,8 +14,8 @@ const NavBar = () => {
     <NavLink to="/authors">Authors</NavLink>
     {user ? (
       <>
-        <span>Logged in as {user.username}</span>
-        <button type="button" onClick={() => dispatch(logout())}>Log out</button>
+        <span className="nav__user">Logged in as {user.username}</span>
+        <button type="button" className="nav__logout" onClick={() => dispatch(logout())}>Log out</button>
       </>
     ) : (
       <>

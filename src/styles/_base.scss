@@ -1,0 +1,169 @@
+// Global base: typography, form controls, buttons and page-level layout.
+:root {
+  --font-ui: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --content-width: 56rem;
+  // left edge of page content (the cards' 1.25rem inner padding included) so header and cards line up
+  --gutter: max(1.25rem, calc((100% - var(--content-width)) / 2 + 1.25rem));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  // not on <html>, so this propagates to the canvas and the starfield layers (z-index < 0) paint above it
+  background: var(--bg);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
+}
+
+::selection {
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-ui);
+}
+
+// slim, themed scrollbars
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+// ---- form controls (the MUI switch is a checkbox, so it is excluded) ----
+input:not([type="checkbox"]) {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  color: var(--text);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  font: 0.9rem var(--font-ui);
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+
+  &::placeholder {
+    color: var(--muted);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft), var(--glow);
+  }
+}
+
+label {
+  color: var(--muted);
+  font: 0.75rem var(--font-ui);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+// ---- buttons: ghost by default, variants below ----
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  padding: 0.45rem 1rem;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  font: 600 0.8rem var(--font-ui);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    color 150ms ease,
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+
+  &:hover:not(:disabled) {
+    border-color: var(--border-strong);
+    color: var(--accent);
+    box-shadow: var(--glow);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// primary: solid accent
+.add-post-button,
+.post__button--like,
+.auth-form button[type="submit"],
+.post-form button:first-of-type {
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-color: var(--accent);
+
+  &:hover:not(:disabled) {
+    color: var(--accent-ink);
+    background: var(--accent);
+    filter: brightness(1.12);
+    box-shadow: var(--glow);
+  }
+}
+
+// danger: outlined red
+.post__button--delete,
+.nav__logout {
+  color: var(--bad);
+  background: transparent;
+  border-color: color-mix(in srgb, var(--bad) 45%, transparent);
+
+  &:hover:not(:disabled) {
+    color: var(--bad);
+    background: var(--bad-soft);
+    border-color: var(--bad);
+    box-shadow: none;
+  }
+}
+
+// ---- page-level layout helpers ----
+.author-title {
+  max-width: var(--content-width);
+  margin: 2rem auto;
+  padding-inline: 1.25rem;
+  font-size: 1.4rem;
+
+  &::before {
+    content: "$ whois ";
+    color: var(--good);
+  }
+}

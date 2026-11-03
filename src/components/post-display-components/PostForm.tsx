@@ -1,4 +1,4 @@
-import "../../styles/PostForm.scss"
+import "../../styles/postform.scss"
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { addPost } from "../../features/postsSlice";
 import { hidePostCreationForm } from "../../features/showPostCreationFormSlice";

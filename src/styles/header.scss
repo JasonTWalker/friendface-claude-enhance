@@ -1,20 +1,117 @@
-@import "./colour-palettes/default-palette.scss";
-
-
 .friendface_header {
-  background-color: var(--color-header-background, #ffffff);
-  padding: 20px;
-    
+  position: relative;
+  overflow: hidden;
+  padding: 2rem var(--gutter) 1.25rem;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface-solid) 88%, transparent), transparent);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
 
+  // the wordmark: a shell path, gradient text and a blinking cursor
   h1 {
-    color: var(--color-text, #000000);
-    font-size: 2em;
     margin: 0;
+    font-size: clamp(1.9rem, 5vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(100deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    &::before {
+      content: "~/";
+      margin-right: 0.15em;
+      -webkit-text-fill-color: var(--muted);
+      font-weight: 500;
+    }
+
+    &::after {
+      content: "▌";
+      margin-left: 0.1em;
+      -webkit-text-fill-color: var(--accent);
+      animation: blink 1.1s steps(1) infinite;
+    }
   }
 
   h2 {
-    color: var(--color-text, #000000);
-    font-size: 1.5em;
-    margin: 0;
+    margin: 0.35rem 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 400;
+
+    &::before {
+      content: "// ";
+      color: var(--good);
+    }
+  }
+
+  // a small ringed planet drifting in the corner
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: max(1.5rem, calc((100% - var(--content-width)) / 2 + 2.25rem));
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle at 32% 30%, #bff4ff, #6a5cff 48%, #160c4a 78%);
+    box-shadow:
+      0 0 40px rgb(106 92 255 / 45%),
+      inset -10px -10px 22px rgb(0 0 0 / 45%);
+    animation: float 9s ease-in-out infinite;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: max(0.25rem, calc((100% - var(--content-width)) / 2 + 0.25rem));
+    width: 9.5rem;
+    height: 2.4rem;
+    border: 2px solid rgb(159 233 255 / 55%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translateY(-50%) rotate(-18deg);
+    animation: float-ring 9s ease-in-out infinite;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(calc(-50% - 7px));
+  }
+
+  0%,
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes float-ring {
+  50% {
+    transform: translateY(calc(-50% - 7px)) rotate(-18deg);
+  }
+}
+
+@media (max-width: 40rem) {
+  .friendface_header::before,
+  .friendface_header::after {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .friendface_header {
+    &::before,
+    &::after,
+    h1::after {
+      animation: none;
+    }
   }
 }

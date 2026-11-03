@@ -91,18 +91,18 @@ const Posts = () => {
       </div>
       {/* logic to display different results in the posts div based on getPostsQuery results */}
       {error ? (
-        <>There was an error loading posts data</>
+        <p className="posts__status posts__status--error">There was an error loading posts data</p>
       ) : isLoading ? (
         console.log("loading posts"),
-        <>Loading posts...</>
+        <p className="posts__status">Loading posts...</p>
       ) : typeof data === 'undefined' ? (
-        <>Posts data from database is undefined.</>
+        <p className="posts__status posts__status--error">Posts data from database is undefined.</p>
       ) : posts? (
         posts.length > 0 ? (
           posts.map(post =>
             <Post postId = {post.id} key={post.id} />)
           ) : (
-              <b>No matching posts to display.</b>
+              <p className="posts__status">No matching posts to display.</p>
           )
       ) : null}
     </div>

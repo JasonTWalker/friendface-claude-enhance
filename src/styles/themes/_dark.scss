@@ -1,12 +1,38 @@
-@import "../colour-palettes/default-palette.scss";
+@use "../colour-palettes/default-palette" as p;
 
-[data-theme="dark"] {
-    --color-surface: #{$twilight-indigo};
-    --color-text: #{$amber-glow};
-    --color-muted: #{$porcelain};
-    --color-border: #{$porcelain};
-    --color-accent: #{$smart-blue};
-    --color-button-text: #{$porcelain};
-    --color-header-background: #{$ink-black};
+// Dark ("deep space") is the default, so it is also applied to :root: pages that never mount <App>
+// (login, register) don't set data-theme and must still be themed.
+:root,
+body[data-theme="dark"] {
+  color-scheme: dark;
 
+  --bg: #{p.$void};
+  --surface: rgb(12 16 36 / 72%);
+  --surface-solid: #{p.$hull};
+  --surface-2: #{p.$hull-raised};
+  --input-bg: rgb(2 4 14 / 55%);
+
+  --text: #{p.$starlight};
+  --muted: #{p.$dust};
+  --border: rgb(120 150 255 / 16%);
+  --border-strong: rgb(0 229 255 / 45%);
+
+  --accent: #{p.$ion-cyan};
+  --accent-ink: #00141a;
+  --accent-soft: rgb(0 229 255 / 12%);
+  --accent-2: #{p.$nebula-violet};
+  --accent-3: #{p.$pulsar-magenta};
+
+  --good: #{p.$accepted-green};
+  --warn: #{p.$medium-orange};
+  --bad: #{p.$wrong-red};
+  --bad-soft: rgb(255 55 95 / 12%);
+
+  --glow: 0 0 22px rgb(0 229 255 / 30%);
+  --shadow: 0 14px 36px -16px rgb(0 0 0 / 85%);
+  --stars-opacity: 1;
+  --nebula:
+    radial-gradient(60rem 38rem at 12% -8%, rgb(98 70 255 / 24%), transparent 60%),
+    radial-gradient(48rem 34rem at 96% 8%, rgb(0 229 255 / 14%), transparent 62%),
+    radial-gradient(52rem 40rem at 70% 112%, rgb(255 79 216 / 14%), transparent 60%);
 }
