@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "author": "First Dummy Post",
+      "content": "Testing launch of new json database.",
+      "date": "Wed Oct 07 2026 09:10:07 GMT+0100 (British Summer Time)",
+      "likes": 5
+    },
+    {
+      "id": "2",
+      "author": "Second Dummy Post",
+      "content": "Testing launch of new json database.",
+      "date": "Wed Oct 07 2026 10:10:07 GMT+0100 (British Summer Time)",
+      "likes": 0
+    },
+    {
+      "id": "pk8mAzxQN-8",
+      "author": "Dummy",
+      "content": "Hello !",
+      "date": "2026-10-04T00:00:00.000Z",
+      "likes": 1
+    },
+    {
+      "id": "2d6U2ooq4q8",
+      "author": "Dummy",
+      "content": "Hello !",
+      "date": "2026-10-04T00:00:00.000Z",
+      "likes": 1
+    },
+    {
+      "id": "fZQO1_DFr5g",
+      "author": "Dummy",
+      "content": "Hello !",
+      "date": "2026-10-04T00:00:00.000Z",
+      "likes": 1
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

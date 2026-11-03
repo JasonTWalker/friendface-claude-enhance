@@ -1,0 +1,156 @@
+@import "./colour-palettes/default-palette.scss";
+
+.post {
+  // Theme-aware design tokens
+  --post-surface: var(--color-surface, #ffffff);
+  --post-text: var(--color-text, #1e293b);
+  --post-muted: var(--color-muted, #3272cc);
+  --post-border: var(--color-border, #e2e8f0);
+  --post-accent: var(--color-accent, #2563eb);
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.25rem;
+  margin-block: 1rem;
+
+  color: var(--post-text);
+  background: var(--post-surface);
+  background-color: var(--post-surface);
+  border: 1px solid var(--post-border);
+  border-radius: 1rem;
+
+  // A subtle shadow adds depth without making the card heavy.
+  box-shadow: 0 2px 8px rgb(15 23 42 / 4%);
+
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+
+  &:hover {
+    box-shadow: 0 5px 18px rgb(15 23 42 / 7%);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    min-width: 0;
+  }
+
+  &__avatar {
+    display: block;
+    flex: 0 0 auto;
+    width: 2.875rem;
+    height: 2.875rem;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--post-border);
+  }
+
+  &__author-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__author {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 650;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  &__date {
+    display: block;
+    margin-top: 0.2rem;
+    color: var(--post-muted);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  &__content {
+    margin-block: 1.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.875rem;
+    border-top: 1px solid var(--post-border);
+    color: var(--post-muted);
+    font-size: 0.8125rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    margin-top: 1rem;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding: 0.625rem 1rem;
+
+    border: 1px solid transparent;
+    border-radius: 0.625rem;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease,
+      color 150ms ease,
+      transform 150ms ease;
+
+    &:focus-visible {
+      outline: 3px solid var(--post-accent);
+      outline-offset: 3px;
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  &__button--like {
+    color: var(--post-border);
+    background: var(--post-accent);
+
+    &:hover {
+      filter: brightness(0.92);
+    }
+  }
+
+  &__button--delete {
+    color: var(--post-muted);
+    background: transparent;
+    border-color: var(--post-muted);
+
+    &:hover {
+      color: #b91c1c;
+      border-color: #fca5a5;
+      background: #fef2f2;
+    }
+  }
+
+  // Respect the user's reduced-motion preference.
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &__button {
+      transition: none;
+    }
+  }
+}

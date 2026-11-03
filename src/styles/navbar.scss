@@ -1,0 +1,32 @@
+a.active {
+  color: #3d06d3;
+}
+a.pending {
+  color: #5C677D;
+}
+a.transitioning {
+  view-transition-name: my-transition;
+}
+
+nav a {
+  padding-top: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-bottom: 4px;
+  background-color: #5c677d98;
+  width: 80px;
+  max-width: 80px;
+  display: inline-block;
+  text-align: center;
+  margin-right: 12px;
+}
+
+a {
+  color: #001233;
+  text-decoration: none;
+  font-size: larger;
+}
+
+nav a:hover {
+  background-color: rgba(0, 18, 51, 0.308);
+}

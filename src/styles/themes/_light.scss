@@ -1,0 +1,11 @@
+@import "../colour-palettes/default-palette.scss";
+
+[data-theme="light"] {
+    --color-surface: #{$porcelain};
+    --color-text: #{$ink-black};
+    --color-muted: #{$twilight-indigo};
+    --color-border: #{$twilight-indigo};
+    --color-accent: #{$smart-blue};
+    --color-button-text: #{$ink-black};
+    --color-header-background: #{$cool-steel};
+}

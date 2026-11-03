@@ -1,0 +1,12 @@
+@import "../colour-palettes/default-palette.scss";
+
+[data-theme="dark"] {
+    --color-surface: #{$twilight-indigo};
+    --color-text: #{$amber-glow};
+    --color-muted: #{$porcelain};
+    --color-border: #{$porcelain};
+    --color-accent: #{$smart-blue};
+    --color-button-text: #{$porcelain};
+    --color-header-background: #{$ink-black};
+
+}

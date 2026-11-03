@@ -1,0 +1,24 @@
+@import "./colour-palettes/default-palette.scss";
+
+
+
+.posts_container {
+  background: $blue-slate;
+  padding: 20px;
+  padding-top: 6px;
+  word-wrap: break-word;
+}
+
+.button-bar {
+  background: $regal-navy;
+  margin-bottom: 6px;
+
+  button {
+    margin-right:15px;
+  }
+}
+
+.add-post-button {
+  color: $cool-steel;
+  background-color: $smart-blue;
+}
