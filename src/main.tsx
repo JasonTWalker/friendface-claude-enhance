@@ -18,7 +18,8 @@ import Register from './components/auth-components/Register.tsx'
 
     // register service worker and handle the asyncronous operation source: https://mswjs.io/guides/integrations/browser
   async function enableMocking() {
-    if (!import.meta.env.DEV) {
+    // mocks are opt-in: run with VITE_USE_MOCKS=true to intercept API calls, otherwise use the real json-server
+    if (!import.meta.env.DEV || import.meta.env.VITE_USE_MOCKS !== 'true') {
       return
     }
 
